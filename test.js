@@ -21,8 +21,7 @@ console.log(doc.convertTo('html', {
 	attributes: {
 		// Use a link for @refs
 		atref: function(node, options) {
-			node.template = '<a href="{link}" class="atref">{content}</a>';
-			node.data.link = '/#user/' + node.data.atref;
+			node.template = '<a href="/#user/{atref}" class="atref">{content}</a>';
 		}
 	}
 }));

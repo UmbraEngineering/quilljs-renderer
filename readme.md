@@ -61,36 +61,56 @@ Defines the line template. Receives the following variables: `lineNumber`, `line
 <div id="line-{lineNumber}" style="{lineStyle}">{content}</div>
 ```
 
-#### bold
+#### styleType
 
-Defines how to render bold text. Receives the following variables: `content`. Default value:
+Should styles be rendered using `style=""` attributes or by using `<b>`, `<i>`, etc. One of `'css'` or `'html'`. Default value: `'html'`.
+
+#### styleTags.bold
+
+Defines how to render bold text when using `html` rendering. Receives the following variables: `content`. Default value:
 
 ```html
 <b>{content}</b>
 ```
 
-#### italic
+#### styleTags.italic
 
-Defines how to render italic text. Receives the following variables: `content`. Default value:
+Defines how to render italic text when using `html` rendering. Receives the following variables: `content`. Default value:
 
 ```html
 <i>{content}</i>
 ```
 
-#### underline
+#### styleTags.underline
 
-Defines how to render underlined text. Receives the following variables: `content`. Default value:
+Defines how to render underlined text when using `html` rendering. Receives the following variables: `content`. Default value:
 
 ```html
 <u>{content}</u>
 ```
 
-#### strikethrough
+#### styleTags.strikethrough
 
-Defines how to render striked text. Receives the following variables: `content`. Default value:
+Defines how to render striked text when using `html` rendering. Receives the following variables: `content`. Default value:
 
 ```html
 <s>{content}</s>
+```
+
+#### styleTags.color
+
+Defines how to render colored text when using `html` rendering. Receives the following variables: `content`, `color`. Default value:
+
+```html
+<span style="color: {color}">{content}</span>
+```
+
+#### text
+
+Defines how to render text when using `css` rendering. Receives the following variables: `content`, `style`. Default value:
+
+```html
+<span style="{style}">{content}</span>
 ```
 
 #### link
@@ -109,4 +129,64 @@ Defines the available embed formats. This option should be an object with number
 {
     1: '<img src="{image}" alt="{alt}" />'
 }
+```
+
+#### attributes
+
+Defines custom attribute overrides. For example, let's say we want to allow @user style references. We could define these in our deltas using a new attribute:
+
+```javascript
+[
+    {insert: '@user', attributes: {atref: 'user'}}
+]
+```
+
+We could render these as links by adding an attribute definition, like this:
+
+```javascript
+doc.convertTo('html', {
+    attributes: {
+        atref: function(node) {
+            node.template = '<a href="/users/{atref}" class="atref">{content}</a>';
+        }
+    }
+})
+```
+
+For another example, we could set up the renderer to handle the `author` attribute set by Quill's authorship module:
+
+```javascript
+doc.convertTo('html', {
+    attributes: {
+        author: function(node) {
+            node.template = '<span class="author-{author}">{content}</span>'
+        }
+    }
+})
+```
+
+Or, to get a little fancier, we could do the same thing, but switch out the the authors' names for simple numbers.
+
+```javascript
+var users = [ ];
+
+doc.convertTo('html', {
+    attributes: {
+        author: function(node) {
+            node.template = '<span class="author-{author}">{content}</span>';
+            var index = users.indexOf(node.data.author);
+            if (index < 0) {
+                index = users.length;
+                users.push(node.data.author);
+            }
+            node.data.author = index;
+        }
+    }
+})
+```
+
+This will output HTML more like this:
+
+```html
+<span class="author-0">Within this document, this user will always be known as author "0", which makes it much easier to write generic CSS to stylize different authors.</span>
 ```
