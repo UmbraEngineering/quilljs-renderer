@@ -11,7 +11,18 @@ var doc = module.exports = new renderer.Document([
 	{insert: 1, attributes: {
 		image: 'monkey.png',
 		alt: 'Funny monkey picture'
-	}}
+	}},
+	{insert: '\n', attributes: {align: 'left'}},
+	{insert: '@jbrumond', attributes: {atref: 'jbrumond'}}
 ]);
 
-console.log(doc.convertTo('html'));
+console.log(doc.convertTo('html', {
+	// styleType: 'css',
+	attributes: {
+		// Use a link for @refs
+		atref: function(node, options) {
+			node.template = '<a href="{link}" class="atref">{content}</a>';
+			node.data.link = '/#user/' + node.data.atref;
+		}
+	}
+}));
