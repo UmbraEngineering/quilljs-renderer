@@ -1,6 +1,6 @@
 {
   "name": "quilljs-renderer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Renders an insert-only Quilljs delta into various format like HTML and Markdown",
   "main": "index.js",
   "scripts": {
