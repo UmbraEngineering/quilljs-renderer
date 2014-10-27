@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/UmbraEngineering/quilljs-renderer",
   "dependencies": {
-    "rich-text": "^1.0.3",
     "merge-recursive": "0.0.3",
     "stringformat": "0.0.5"
   }
