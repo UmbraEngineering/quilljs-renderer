@@ -1,0 +1,32 @@
+{
+  "name": "quilljs-renderer",
+  "version": "0.0.0",
+  "description": "Renders an insert-only Quilljs delta into various format like HTML and Markdown",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/UmbraEngineering/quilljs-renderer"
+  },
+  "keywords": [
+    "quilljs",
+    "ot",
+    "delta",
+    "html",
+    "markdown",
+    "render"
+  ],
+  "author": "James Brumond <james@jbrumond.me> (http://www.jbrumond.me)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UmbraEngineering/quilljs-renderer/issues"
+  },
+  "homepage": "https://github.com/UmbraEngineering/quilljs-renderer",
+  "dependencies": {
+    "rich-text": "^1.0.3",
+    "merge-recursive": "0.0.3",
+    "stringformat": "0.0.5"
+  }
+}
