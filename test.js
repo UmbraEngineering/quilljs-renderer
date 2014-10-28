@@ -4,7 +4,7 @@ var renderer = require('./index');
 renderer.loadFormat('html');
 
 var doc = module.exports = new renderer.Document([
-	{insert: 'Hello, World!', attributes: {bold: true}},
+	{insert: 'Hello, World!\nThis is a second line.', attributes: {bold: true}},
 	{insert: '\n', attributes: {align: 'right'}},
 	{insert: 'This is a demo of the Quilljs Renderer'},
 	{insert: '\n', attributes: {align: 'left'}},
