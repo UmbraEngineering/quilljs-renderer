@@ -3,6 +3,8 @@
 
 Renders an insert-only Quilljs delta into various format like HTML and Markdown
 
+<a href='https://pledgie.com/campaigns/28606'><img alt='Click here to lend your support to: quilljs-renderer and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/28606.png?skin_name=chrome' border='0' ></a>
+
 ## Install
 
 ```bash
